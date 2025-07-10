@@ -2,7 +2,7 @@ import math
 from sympy import symbols, diff, cos
 import numpy as np
 import matplotlib.pyplot as plt
-from sympy import lambdify
+from sympy import lambdify, exp, Symbol
 
 def poli_taylor(funcao, ordem, ponto):
     x = symbols('x')
@@ -80,13 +80,17 @@ def plot_erros(funcao, ponto, ordens, intervalo, tipo='absoluto'):
     plt.show()
 
 def main():
-    funcao = cos
+    mnb = cos
     ponto = 0
     ordens = [1, 2, 3, 4, 5]
     intervalo = (-5, 5)
 
-    plot_funcao_e_taylor(funcao, ponto, ordens, intervalo)
-    plot_erros(funcao, ponto, ordens, intervalo, tipo='absoluto')
+    x = Symbol('x')
+    f = lambda x: exp(-x**2) #pra usar ela na funcao de derivacao, diff, tem q usar f(x) !!!
+
+
+    plot_funcao_e_taylor(f, ponto, ordens, intervalo)
+    plot_erros(f, ponto, ordens, intervalo, tipo='absoluto')
 
 if __name__ == "__main__":
     main()
